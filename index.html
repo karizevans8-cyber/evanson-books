@@ -257,7 +257,23 @@ renderBooks();
 
   window.supabaseClient = supabase;
 
-  console.log('Evanson Books: Supabase client initialized.');
+  console.log('  window.testBooksConnection = async function () {
+    const { data, error } = await supabase
+      .from('books')
+      .select('id, title, author, price, is_free, is_published')
+      .eq('is_published', true);
+
+    if (error) {
+      console.error('Books database error:', error.message);
+      alert('Database connection failed. Check the browser console.');
+      return;
+    }
+
+    console.log('Published books:', data);
+    alert('Database connected! Published books found: ' + data.length);
+  };
+
+  console.log('Evanson Books: Supabase client initialized.');.');
 </script>
 
 </body>
