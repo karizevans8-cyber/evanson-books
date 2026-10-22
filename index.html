@@ -1,0 +1,247 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101820">
+<title>Evanson Kariuki Books</title>
+<style>
+:root {
+  --bg:#101820; --panel:#19232d; --gold:#e4bd73;
+  --text:#f7f4ed; --muted:#aab5c0; --line:#303c47;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);
+font-family:system-ui,-apple-system,sans-serif}
+button,input,select{font:inherit}
+button{cursor:pointer}
+header{padding:18px 5%;border-bottom:1px solid var(--line);
+display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{background:var(--gold);color:#101820;padding:10px;
+border-radius:10px;font-weight:900;font-size:20px}
+.brand h1{font-size:17px;margin:0}
+.brand small{color:var(--muted)}
+.header-btn,.btn{border:1px solid var(--line);border-radius:9px;
+padding:10px 14px;background:var(--panel);color:var(--text)}
+.hero{padding:55px 5% 40px;
+background:linear-gradient(125deg,#192b36,#101820 75%)}
+.eyebrow{color:var(--gold);text-transform:uppercase;
+letter-spacing:2px;font-size:12px;font-weight:700}
+.hero h2{font-family:Georgia,serif;font-size:clamp(32px,6vw,52px);
+line-height:1.1;max-width:600px;margin:14px 0}
+.hero p{color:var(--muted);max-width:520px;line-height:1.7}
+.btn-primary{background:var(--gold);color:#18202a;border:0;
+border-radius:8px;padding:12px 18px;font-weight:750}
+main{padding:30px 5% 60px}
+.section-head{display:flex;align-items:center;justify-content:space-between;
+flex-wrap:wrap;gap:12px}
+.section-head h2{font-family:Georgia,serif;font-size:27px}
+.controls{display:flex;gap:8px;flex-wrap:wrap}
+input,select{background:var(--panel);border:1px solid var(--line);
+color:var(--text);border-radius:8px;padding:11px;max-width:100%}
+input{width:220px}
+select{width:auto}
+.shelf{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));
+gap:20px;margin-top:22px}
+.book{min-width:0}
+.cover{min-height:205px;border-radius:8px;padding:17px;
+display:flex;flex-direction:column;justify-content:space-between;
+box-shadow:0 8px 18px #0004;border:1px solid #ffffff18}
+.cover .mini{font-size:10px;letter-spacing:1.5px}
+.cover strong{font-family:Georgia,serif;font-size:23px;line-height:1.12}
+.cover small{font-size:11px}
+.cover-a{background:linear-gradient(145deg,#254b48,#142d30)}
+.cover-b{background:linear-gradient(145deg,#6b3c36,#321c27)}
+.cover-c{background:linear-gradient(145deg,#55517b,#252943)}
+.cover-d{background:linear-gradient(145deg,#a27b43,#4e3825)}
+.book h3{font-size:15px;margin:12px 0 5px}
+.book p{font-size:12px;color:var(--muted);margin:0 0 10px}
+.book-actions{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.price{font-size:12px;color:var(--gold);font-weight:700}
+.read-btn{padding:8px 10px;border-radius:7px;border:1px solid var(--line);
+color:var(--text);background:var(--panel);font-size:12px}
+.note{margin-top:25px;padding:14px;border:1px solid var(--line);
+border-radius:9px;color:var(--muted);font-size:13px;line-height:1.6}
+.empty{color:var(--muted);padding:25px 0}
+footer{border-top:1px solid var(--line);padding:25px 5%;
+color:var(--muted);font-size:12px;line-height:1.7}
+.overlay{display:none;position:fixed;inset:0;background:#080d12ee;
+z-index:5;overflow:auto;padding:20px}
+.reader{max-width:720px;margin:25px auto;background:#f8f2e6;color:#29251f;
+padding:clamp(22px,6vw,55px);border-radius:10px;min-height:70vh}
+.reader-top{display:flex;justify-content:space-between;gap:12px;
+align-items:center;flex-wrap:wrap}
+.reader button{background:#e7ddca;color:#29251f;border:1px solid #c8bda9;
+padding:9px 12px;border-radius:7px}
+.reader h2{font-family:Georgia,serif;font-size:34px;margin-top:38px}
+.reader .chapter{font-family:Georgia,serif;font-size:18px;line-height:1.9;
+white-space:pre-wrap}
+@media(max-width:450px){
+ header{padding:14px 4%}
+ .brand h1{font-size:14px}
+ .hero{padding:38px 5% 30px}
+ .cover{min-height:180px}
+ .shelf{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+ .cover strong{font-size:20px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <div class="logo">EK</div>
+    <div><h1>Evanson Kariuki Books</h1>
+    <small>Independent digital publishing</small></div>
+  </div>
+  <button class="header-btn" onclick="showLibrary()">My Library</button>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">Stories worth discovering</div>
+  <h2>Every book opens a new world.</h2>
+  <p>Discover stories, explore new ideas and enjoy books published by
+  Evanson Kariuki. Your next great read starts here.</p>
+  <button class="btn-primary" onclick="document.getElementById('catalogue').scrollIntoView({behavior:'smooth'})">
+    Explore the books ↓
+  </button>
+</section>
+
+<main id="catalogue">
+  <div class="section-head">
+    <h2>Explore the library</h2>
+    <div class="controls">
+      <input id="search" placeholder="Search books..." aria-label="Search books">
+      <select id="filter" aria-label="Filter books">
+        <option value="all">All books</option>
+        <option value="free">Free books</option>
+        <option value="paid">Paid books</option>
+        <option value="fiction">Fiction</option>
+        <option value="drama">Drama</option>
+      </select>
+    </div>
+  </div>
+  <div class="shelf" id="shelf"></div>
+  <div class="note">
+    <strong>About this preview:</strong> These are demonstration titles,
+    not published manuscripts. Paid-book checkout and online accounts
+    will be connected after we build the secure backend.
+  </div>
+</main>
+
+<div class="overlay" id="overlay">
+  <article class="reader">
+    <div class="reader-top">
+      <span id="readerLabel">EVANSON KARIUKI BOOKS</span>
+      <button onclick="closeReader()">Close ✕</button>
+    </div>
+    <h2 id="readerTitle"></h2>
+    <p id="readerAuthor">By Evanson Kariuki</p>
+    <hr>
+    <div class="chapter" id="readerText"></div>
+    <p style="font-size:12px;color:#746d61;margin-top:35px">
+      Demonstration reader. Your published chapters will appear here
+      when the publishing system is connected.
+    </p>
+  </article>
+</div>
+
+<footer>
+  <strong>Evanson Kariuki Books</strong><br>
+  An independent publishing project by Evanson Kariuki.<br>
+  © <span id="year"></span> Evanson Kariuki. All rights reserved.
+</footer>
+
+<script>
+const books = [
+ {id:1,title:"The First Manuscript",genre:"Fiction",access:"free",
+  price:"FREE",cover:"cover-a",
+  description:"A sample of stories to come.",
+  text:"Welcome to Evanson Kariuki Books.\\n\\nThis is a demonstration reading page. Your own manuscript will replace this sample when you publish your first book.\\n\\nEvery great author begins with a first page. This is yours."},
+ {id:2,title:"A House of Questions",genre:"Drama",access:"free",
+  price:"FREE",cover:"cover-b",
+  description:"A short demonstration drama.",
+  text:"A HOUSE OF QUESTIONS\\n\\nChapter One\\n\\nThe evening was quiet, but the room was full of things nobody had found the courage to say. Daniel stood by the doorway, wondering whether love was enough to hold a family together.\\n\\nThis is sample text for demonstration only."},
+ {id:3,title:"Beyond the Horizon",genre:"Fiction",access:"paid",
+  price:"PAID",cover:"cover-c",
+  description:"A placeholder for a future paid novel.",
+  text:"This book has not yet been published. The real paid-book reading experience will be enabled after secure purchases are implemented."},
+ {id:4,title:"The Final Promise",genre:"Drama",access:"paid",
+  price:"PAID",cover:"cover-d",
+  description:"A placeholder for a future paid drama.",
+  text:"This book has not yet been published. The real paid-book reading experience will be enabled after secure purchases are implemented."}
+];
+
+function renderBooks(){
+ const query=document.getElementById("search").value.toLowerCase().trim();
+ const filter=document.getElementById("filter").value;
+ const results=books.filter(b=>{
+   const matches=(b.title+" "+b.genre+" "+b.description).toLowerCase().includes(query);
+   const category=filter==="all" || b.access===filter ||
+     b.genre.toLowerCase()===filter;
+   return matches && category;
+ });
+ const shelf=document.getElementById("shelf");
+ shelf.innerHTML="";
+ if(!results.length){
+   shelf.innerHTML='<p class="empty">No books found. Try another search.</p>';
+   return;
+ }
+ results.forEach(b=>{
+   const card=document.createElement("article");
+   card.className="book";
+   const cover=document.createElement("div");
+   cover.className="cover "+b.cover;
+   const mini=document.createElement("span");
+   mini.className="mini";
+   mini.textContent="EVANSON KARIUKI";
+   const title=document.createElement("strong");
+   title.textContent=b.title;
+   const genre=document.createElement("small");
+   genre.textContent=b.genre.toUpperCase();
+   cover.append(mini,title,genre);
+   const h=document.createElement("h3");
+   h.textContent=b.title;
+   const p=document.createElement("p");
+   p.textContent=b.genre+" · "+b.description;
+   const actions=document.createElement("div");
+   actions.className="book-actions";
+   const price=document.createElement("span");
+   price.className="price";
+   price.textContent=b.price;
+   const button=document.createElement("button");
+   button.className="read-btn";
+   button.textContent=b.access==="free"?"Read sample":"View book";
+   button.onclick=()=>openBook(b.id);
+   actions.append(price,button);
+   card.append(cover,h,p,actions);
+   shelf.append(card);
+ });
+}
+function openBook(id){
+ const b=books.find(book=>book.id===id);
+ if(!b)return;
+ if(b.access==="paid"){
+   alert("This title is a demonstration placeholder. Paid checkout is not connected yet, so no payment will be taken.");
+   return;
+ }
+ document.getElementById("readerTitle").textContent=b.title;
+ document.getElementById("readerText").textContent=b.text.replace(/\\n/g,"\n");
+ document.getElementById("overlay").style.display="block";
+ document.body.style.overflow="hidden";
+}
+function closeReader(){
+ document.getElementById("overlay").style.display="none";
+ document.body.style.overflow="";
+}
+function showLibrary(){
+ alert("Your personal library and saved reading progress will be added when reader accounts are connected.");
+}
+document.getElementById("search").addEventListener("input",renderBooks);
+document.getElementById("filter").addEventListener("change",renderBooks);
+document.getElementById("year").textContent=new Date().getFullYear();
+renderBooks();
+</script>
+</body>
+</html>
