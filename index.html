@@ -243,5 +243,22 @@ document.getElementById("filter").addEventListener("change",renderBooks);
 document.getElementById("year").textContent=new Date().getFullYear();
 renderBooks();
 </script>
+  
+<script type="module">
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+  const SUPABASE_URL = 'https://arieyuelluuxdeudeuta.supabase.co';
+  const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_xN0VVxzXdR7X1tJkxi3mBg_rMFVkhzH';
+
+  const supabase = createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+  window.supabaseClient = supabase;
+
+  console.log('Evanson Books: Supabase client initialized.');
+</script>
+
 </body>
 </html>
