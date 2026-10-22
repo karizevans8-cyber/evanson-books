@@ -256,6 +256,23 @@ renderBooks();
   );
 
   window.supabaseClient = supabase;
+  
+window.loadPublishedBooks = async function () {
+  const { data, error } = await supabase
+    .from('books')
+    .select('id, title, author, description, cover_url, price, is_free')
+    .eq('is_published', true);
+
+  if (error) {
+    console.error('Could not load books:', error.message);
+    alert('Could not load books. Please check the database settings.');
+    return;
+  }
+
+  console.log('Books loaded from Supabase:', data);
+  alert('Books loaded successfully: ' + data.length);
+};
+
 
   console.log('  window.testBooksConnection = async function () {
     const { data, error } = await supabase
@@ -277,5 +294,6 @@ renderBooks();
 </script><button onclick="alert('The button is working!'); window.testBooksConnection()">
   Test Database Connection
 <p id="db-result">Ready to test the database.</p></button>
+  
 </body>
 </html>
