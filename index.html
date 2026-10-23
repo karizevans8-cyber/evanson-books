@@ -193,5 +193,47 @@ $("book-form").addEventListener("submit",async e=>{
   db.auth.onAuthStateChange(()=>{setTimeout(refreshAccount,0);});
 })();
 </script>
+
+<!-- Evanson Kariuki Books: Publisher Dashboard -->
+<section id="publisher-dashboard" style="display:none;max-width:1000px;margin:30px auto;padding:20px;font-family:Arial,sans-serif;">
+  <h2>Publisher Dashboard</h2>
+  <p>Manage your books and publications.</p>
+
+  <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:20px;">
+    <button type="button" onclick="showPublisherForm()">+ Add a Book</button>
+    <button type="button" onclick="loadPublisherBooks()">Refresh My Books</button>
+  </div>
+
+  <form id="publisher-book-form" style="display:none;max-width:600px;">
+    <label for="pub-title">Book title</label>
+    <input id="pub-title" required maxlength="200"
+      style="display:block;width:100%;padding:10px;margin:6px 0 14px;">
+
+    <label for="pub-author">Author</label>
+    <input id="pub-author" required maxlength="150"
+      style="display:block;width:100%;padding:10px;margin:6px 0 14px;">
+
+    <label for="pub-description">Description</label>
+    <textarea id="pub-description" required maxlength="5000"
+      style="display:block;width:100%;padding:10px;margin:6px 0 14px;"></textarea>
+
+    <label for="pub-price">Price (enter 0 for a free book)</label>
+    <input id="pub-price" type="number" min="0" step="0.01" value="0" required
+      style="display:block;width:100%;padding:10px;margin:6px 0 14px;">
+
+    <label for="pub-cover">Cover image URL</label>
+    <input id="pub-cover" type="url" placeholder="https://..."
+      style="display:block;width:100%;padding:10px;margin:6px 0 14px;">
+
+    <button type="submit">Save Book</button>
+    <button type="button" onclick="hidePublisherForm()">Cancel</button>
+    <p id="publisher-form-message" role="status"></p>
+  </form>
+
+  <div id="publisher-books-list" aria-live="polite">
+    Your publications will appear here.
+  </div>
+</section>
+<!-- End Publisher Dashboard -->
 </body>
 </html>
